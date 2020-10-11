@@ -34,8 +34,8 @@ do
 	then
 		sum=$(echo "$sum + $val"|bc)
 		n=$(($n+1))
-		flag=$(($flag+1))
 	fi
+	flag=$(($flag+1))
 	if [[ $flag -eq 100 ]]
 	then
 		echo -n "非零项总次数 $n 总和 $sum 平均值 " >> ./$new_file_name
