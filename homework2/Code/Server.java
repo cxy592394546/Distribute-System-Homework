@@ -16,10 +16,10 @@ public class Server {
             StringBuilder result = new StringBuilder();
             String line = null;
             while ((info=bufferedReader.readLine())!=null) {
-                System.out.println("Server端1---查询文件:"+"dblp_split_1.xml");
-		System.out.println("Server端1---client请求为查询作者:"+info);
-                String file_path = "~/temp_file/dblp_split_1.xml";
-                String command = "cat " + file_path + " | grep -o \""+ info +"\" |wc -l\n";
+                System.out.println("Server端1---查询文件:"+"dblp_split_x.xml");
+		        System.out.println("Server端1---client请求为查询作者:"+info);
+                String file_path = "~/temp_file/dblp_split_x.xml";
+                String command = "your commond";
                 String[] params = new String[] {"/bin/sh", "-c", command};
                 Process process = Runtime.getRuntime().exec(params);
                 process.waitFor();
