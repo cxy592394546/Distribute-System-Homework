@@ -5,7 +5,7 @@ import java.net.Socket;
 public class Server {
     public static void main(String[] args) {
         try{
-            ServerSocket serverSocket=new ServerSocket(8888);
+            ServerSocket serverSocket=new ServerSocket(xxxx);
             System.out.println("----------------服务端执行，创建监听请求----------------");
             Socket socket=serverSocket.accept();//创建监听
             InputStream inputStream=socket.getInputStream();
@@ -17,11 +17,11 @@ public class Server {
             String line1 = null;
             String line0 = null;
             while ((info=bufferedReader.readLine())!=null) {
-                System.out.println("Server端1---查询文件:"+"dblp_split_1&6.xml");
-                System.out.println("Server端1---client请求为查询作者:"+info);
-                String file_path1 = "~/temp_file/dblp_split_1.xml";
+                System.out.println("Server端x---查询文件:"+"xxxx.xml");
+                System.out.println("Server端x---client请求为查询作者:"+info);
+                String file_path1 = your_path;
                 String command1 = "cat " + file_path1 + " | grep -o \""+ info +"\" |wc -l\n";
-                String file_path0 = "~/temp_file/dblp_split_6.xml";
+                String file_path0 = your_path;
                 String command0 = "cat " + file_path0 + " | grep -o \""+ info +"\" |wc -l\n";
                 String[] params1 = new String[] {"/bin/sh", "-c", command1};
                 Process process1 = Runtime.getRuntime().exec(params1);
@@ -44,7 +44,7 @@ public class Server {
                     result.append(line0);
                 }
             }
-            System.out.println("Server端1-dblp_split_1&6:" + result + "次");
+            System.out.println("Server端x-xxxx:" + result + "次");
             socket.shutdownInput();
 
             //向客户端发送数据
@@ -67,3 +67,7 @@ public class Server {
     }
 
 }
+
+// Author: Cui Xinyu
+// ID: 1853444
+// Date: 10/30 2020
