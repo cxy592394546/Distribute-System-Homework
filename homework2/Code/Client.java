@@ -3,6 +3,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.net.Socket;
 import java.net.UnknownHostException;
+import java.util.Scanner;
 
 public class Client {
     public static void main(String[] args) {
@@ -12,15 +13,20 @@ public class Client {
         int flag = 0;
         String server6_tolerance = "";
         //查询对象
-        String author;
+        Scanner scanner = new Scanner(System.in);
+        System.out.print("Input the Author: ");
+        String author = scanner.nextLine();
+
         //记录时间（开始）
         Instant inst1 = Instant.now();
         System.out.println("Inst1 : " + inst1);
-        for(int i = 0; i < x; i++) {
+        for(int i = 0; i < 7; i++) {
             int server_num = i + 1;
-            String[] host = new String[]{};
+            String[] host = new String[]{"xxx.xxx.xxx.xxx", "xxx.xxx.xxx.xxx", "xxx.xxx.xxx.xxx",
+                   "xxx.xxx.xxx.xxx", "xxx.xxx.xxx.xxx", "xxx.xxx.xxx.xxx", "xxx.xxx.xxx.xxx"};
             try {
-                //发送到xxxx端口
+                //发送到8888端口
+                Instant server_start = Instant.now();
                 Socket socket = new Socket(host[i], xxxx);
 
                 //向服务端发起查询
@@ -61,23 +67,25 @@ public class Client {
                 printWriter.close();
                 outputStream.close();
                 socket.close();
+
+                Instant server_end = Instant.now();
+                System.out.println("Server" + server_num + " runtime in milliseconds : " +
+                        Duration.between(server_start, server_end).toMillis());
             }
             catch (UnknownHostException e) {
                 System.out.println("server" + server_num + " error:" + e);
-                flag = 1;
-                if (i == 6){
-                    flag = 0;
+                if (i == 6 && flag == 1){
                     System.out.println("Server6:" + server6_tolerance + "次");
                     times = times + Integer.parseInt(server6_tolerance);
                 }
+                flag = 1;
             }catch (IOException e) {
                 System.out.println("server" + server_num + " error:" + e);
-                flag = 1;
-                if (i == 6){
-                    flag = 0;
+                if (i == 6 && flag == 1){
                     System.out.println("Server6:" + server6_tolerance + "次");
                     times = times + Integer.parseInt(server6_tolerance);
                 }
+                flag = 1;
             }
         }
         String str = "查询到的总次数:" + times;
@@ -93,7 +101,7 @@ public class Client {
         if(null != sourceByte){
             try {
                 //文件路径（路径+文件名）
-                File file = new File("xxxx");
+                File file = new File(xxxx);
                 //文件不存在则创建文件，先创建目录
                 if (!file.exists()) {
                     File dir = new File(file.getParent());
@@ -111,10 +119,9 @@ public class Client {
                 e.printStackTrace();
             }
         }
-
     }
 }
 
 // Author: Cui Xinyu
 // ID: 1853444
-// Date: 10/30 2020
+// Date: 10/31 2020
